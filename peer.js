@@ -8,6 +8,7 @@ var getUserMedia = require('./get-user-media.js')()
 module.exports = function create () {
   var server = 'http://catlobby.maxogden.com'
   // var server = 'http://localhost:5005'
+  var server = 'https://radiant-tundra-09421.herokuapp.com'
   var remoteConfigUrl = 'https://instant.io/rtcConfig'
   if (process.browser) remoteConfigUrl = 'http://cors.maxogden.com/' + remoteConfigUrl
 
