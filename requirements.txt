@@ -1,0 +1,2 @@
+PyUserInput==0.1.11
+zerorpc==0.6.3

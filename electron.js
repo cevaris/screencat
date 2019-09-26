@@ -77,3 +77,31 @@ ipc.on('create-window', function (ev, config) {
     mb.window.webContents.send('disconnected', true)
   })
 })
+
+
+// pycontrol config
+var pyProc = null
+var pyPort = null
+
+var selectPort = () => {
+  pyPort = 4242
+  return pyPort
+}
+
+var createPyProc = () => {
+  var port = '' + selectPort()
+  var script = path.join(__dirname, 'pycontrol', 'api.py')
+  pyProc = require('child_process').spawn('python', [script, port])
+  if (pyProc != null) {
+    console.log('child process success')
+  }
+}
+
+var exitPyProc = () => {
+  pyProc.kill()
+  pyProc = null
+  pyPort = null
+}
+
+ipc.on('ready', createPyProc)
+ipc.on('will-quit', exitPyProc)

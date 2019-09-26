@@ -87,7 +87,7 @@ ui.buttons.share.addEventListener('click', function (e) {
   ui.hide(ui.containers.choose)
   ui.show(ui.buttons.back)
   try {
-    if (!peerConnection.robot) peerConnection.robot = require('./robot.js')
+    if (!peerConnection.robot) peerConnection.robot = require('./pycontrol.js')
   } catch (e) {
     error(new Error('./robot.js failed to load'))
     error(e)
@@ -219,4 +219,5 @@ function error (e) {
   // TODO: Display this as a site flash in addition to the app console
   ipc.send('error', {message: e.message, name: e.name})
   console.error(e)
+  console.error(e.stack)
 }
